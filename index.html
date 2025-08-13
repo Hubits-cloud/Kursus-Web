@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tune Kursuscenter</title>
+
+  <!-- Forlæs plakatbilledet så helten ikke blinker før videoen loader -->
+  <link rel="preload" as="image" href="assets/estate-poster.jpg" />
+  <!-- Ekstern CSS -->
+  <link rel="stylesheet" href="assets/main.css" />
+</head>
+<body>
+  <a href="#main" class="skip">Spring til indhold</a>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container bar">
+      <a class="brand" href="/">
+        <span class="logo" aria-hidden="true"></span>
+        Tune Kursuscenter
+      </a>
+
+      <!-- Mobilmenu (vises under 800px) -->
+      <button class="hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Skift menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Hovedmenu -->
+      <nav id="primary-nav" aria-label="Hovedmenu">
+        <a href="#about">Om os</a>
+        <a href="#rooms">Lokaler</a>
+        <a href="#skole">Skolen (PGU)</a>
+        <a href="#contact">Kontakt os</a>
+        <a class="button" style="margin-left:1rem" href="#booking">Booking</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== HERO MED VIDEO ===== -->
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <video autoplay muted loop playsinline poster="assets/estate-poster.jpg">
+          <source src="assets/estate.webm" type="video/webm" />
+          <source src="assets/estate.mp4" type="video/mp4" />
+        </video>
+        <!-- Faldt tilbage hvis video ikke kan afspilles / reduceret bevægelse -->
+        <img src="assets/estate-poster.jpg" alt="" />
+      </div>
+
+      <div class="content container">
+        <h1>Konferencecenter og skole – samme adresse.</h1>
+        <p>Fleksible konferencelokaler og et dedikeret team.</p>
+        <div class="actions">
+          <a class="button secondary" href="#about">Om os</a>
+          <a class="button primary" href="#booking">Booking</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INDHOLD NEDENFOR ===== -->
+    <section id="about" class="container">
+      <h2>Om vores faciliteter</h2>
+      <p>Adgangsforhold, parkering, offentlig transport og support på stedet.</p>
+      <div class="grid">
+        <div class="card">Ladestandere til elbil</div>
+        <div class="card">Forplejning</div>
+        <div class="card">Central beliggenhed</div>
+      </div>
+    </section>
+
+    <section id="rooms" class="container">
+      <h2>Lokaler</h2>
+      <div class="grid">
+        <article class="card">Lokale 1 — op til 60 personer</article>
+        <article class="card">Lokale 2 — op til 24 personer</article>
+        <article class="card">Lokale 3 — op til 10 personer</article>
+      </div>
+    </section>
+
+    <section id="skole" class="container">
+      <h2>Skolen (PGU)</h2>
+      <p>Vi er også en produktionsskole (PGU). Skolens tilbud er for tilmeldte elever og er ikke åbne som offentlige kurser.</p>
+      <div class="grid">
+        <article class="card">BBA</article>
+        <article class="card">IT</article>
+        <article class="card">Medie &amp; kultur</article>
+      </div>
+      <p style="margin-top:1rem;"><a class="button" href="https://fgu-skolen.dk">Læs om skolen</a></p>
+    </section>
+
+    <section id="booking" class="container">
+      <h2>Booking / forespørgsler</h2>
+      <p>Vi kobler dette til en rigtig formular i næste trin.</p>
+      <p><a class="button primary" href="#contact">Start en forespørgsel</a></p>
+    </section>
+  </main>
+
+  <footer class="container" id="contact">
+    <p>© <span id="year"></span> Tune Kursuscenter · Grevevej 20 · +45 99 999 · hello@example.com</p>
+  </footer>
+
+  <script>
+    // Mobilmenu: skifter et data-attribute, som CSS bruger til at vise/skjule menuen
+    const btn = document.querySelector('.hamburger');
+    const nav = document.getElementById('primary-nav');
+    btn.addEventListener('click', () => {
+      const open = nav.getAttribute('data-open') === 'true';
+      nav.setAttribute('data-open', String(!open));
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Årstal i footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

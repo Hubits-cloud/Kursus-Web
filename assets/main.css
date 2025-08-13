@@ -1,0 +1,228 @@
+/* ==========================================================================
+   Tune Kursuscenter — main.css
+   Purpose: simple, readable styles for the landing page.
+   ========================================================================== */
+
+/* == 1) THEME TOKENS ====================================================== */
+:root {
+  /* Colors */
+  --brand: #245dd8;
+  --ink: #111;      /* primary text */
+  --muted: #5b6472; /* secondary text */
+  --bg: #fff;       /* page background */
+  --border: #e5e7eb;
+
+  /* Radii, spacing, layout */
+  --radius: .6rem;
+  --space: 1rem;
+  --max: 1100px; /* max width for content containers */
+}
+
+/* == 2) BASE / RESET ======================================================= */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font: 16px/1.5 system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* Visually-hidden skip link that appears on keyboard focus */
+.skip {
+  position: absolute; left: -9999px; top: auto;
+}
+.skip:focus {
+  left: var(--space); top: var(--space);
+  background: #fff; color: var(--ink);
+  padding: .5rem 1rem; border: 1px solid var(--border);
+  border-radius: .3rem;
+}
+
+/* == 3) LAYOUT HELPERS ===================================================== */
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+
+/* Reusable button styles */
+.button {
+  display: inline-block;
+  padding: .7rem 1.1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.button.primary {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+.button.secondary {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Simple cards and grids for the lower sections */
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.card {
+  border: 1px solid var(--border);
+  border-radius: .6rem;
+  padding: 1rem;
+}
+
+/* == 4) HEADER / NAV ======================================================= */
+header {
+  position: sticky; /* stays visible when scrolling */
+  top: 0;
+  z-index: 20;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+}
+.brand .logo {
+  /* Placeholder “logo” box — replace with an <img> later */
+  width: 40px; height: 40px;
+  border-radius: .5rem;
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+
+/* Desktop nav */
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+/* Mobile hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: .5rem;
+  padding: .5rem;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--ink);
+  margin: 4px 0;
+}
+
+/* == 5) HERO (VIDEO BACKGROUND) =========================================== */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Media container sits behind the text */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  margin: var(--space); /* rounded corners inset from page edge */
+}
+.hero-media video,
+.hero-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; /* crop to fill nicely */
+}
+
+/* Dark gradient overlay for text readability */
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.15));
+}
+
+/* Foreground content */
+.hero .content {
+  position: relative;
+  z-index: 1;      /* above the video */
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 2.4vw + 1rem, 3rem);
+  margin: 0 0 .6rem;
+}
+.hero p {
+  margin: 0 0 1rem;
+  color: #e6e9ef;
+}
+.actions {
+  display: flex;
+  gap: .8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Respect users who prefer reduced motion: hide video, show poster image */
+@media (prefers-reduced-motion: reduce) {
+  .hero-media video { display: none; }
+}
+
+/* == 6) CONTENT SECTIONS & FOOTER ========================================= */
+section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+}
+h2 { margin: 0 0 .8rem; }
+
+footer {
+  padding: 2rem 0;
+  color: var(--muted);
+}
+
+/* == 7) RESPONSIVE BEHAVIOUR ============================================== */
+/* Under 800px: hide desktop nav; show a simple dropdown menu */
+@media (max-width: 800px) {
+  nav { display: none; }
+
+  /* When JS toggles data-open="true", reveal the menu as a small panel */
+  nav[data-open="true"] {
+    display: block;
+    position: absolute;
+    top: 64px;        /* below the header */
+    right: var(--space);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: .5rem;
+    padding: .6rem;
+  }
+  nav[data-open="true"] a {
+    display: block;
+    padding: .4rem .6rem;
+    margin: .1rem 0;
+  }
+
+  .hamburger { display: inline-block; }
+}
