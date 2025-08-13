@@ -9,33 +9,42 @@
   <link rel="preload" as="image" href="assets/estate-poster.jpg" />
   <!-- Ekstern CSS -->
   <link rel="stylesheet" href="assets/main.css" />
+  <!-- Ekstern Javascript -->
+  <script src="assets/main.js" defer></script>
+  <script src="assets/i18n.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip">Spring til indhold</a>
 
   <!-- ===== HEADER ===== -->
   <header>
-    <div class="container bar">
-      <a class="brand" href="/">
-        <span class="logo" aria-hidden="true"></span>
-        Tune Kursuscenter
-      </a>
+  <div class="container bar">
+    <a class="brand" href="/">
+      <span class="logo" aria-hidden="true"></span>
+      Tune Kursuscenter
+    </a>
 
-      <!-- Mobilmenu (vises under 800px) -->
+    <!-- Right side: hamburger + nav + language button -->
+    <div class="right">
+      <!-- Mobile menu button -->
       <button class="hamburger" aria-controls="primary-nav" aria-expanded="false" aria-label="Skift menu">
         <span></span><span></span><span></span>
       </button>
 
-      <!-- Hovedmenu -->
+      <!-- Primary navigation (add data-i18n keys) -->
       <nav id="primary-nav" aria-label="Hovedmenu">
-        <a href="#about">Om os</a>
-        <a href="#rooms">Lokaler</a>
-        <a href="#skole">Skolen (PGU)</a>
-        <a href="#contact">Kontakt os</a>
-        <a class="button" style="margin-left:1rem" href="#booking">Booking</a>
+        <a href="#about"     data-i18n="nav.about">Om os</a>
+        <a href="#rooms"     data-i18n="nav.rooms">Lokaler</a>
+        <a href="#skole"     data-i18n="nav.school">Skolen (PGU)</a>
+        <a href="#contact"   data-i18n="nav.contact">Kontakt os</a>
+        <a class="button" style="margin-left:1rem" href="#booking" data-i18n="nav.book">Booking</a>
       </nav>
+
+      <!-- Language switch button (shows the *target* language flag) -->
+      <button id="lang-toggle" class="lang-switch" aria-label="Switch to English" title="English">🇬🇧</button>
     </div>
-  </header>
+  </div>
+</header>
 
   <main id="main">
     <!-- ===== HERO MED VIDEO ===== -->
@@ -50,55 +59,56 @@
       </div>
 
       <div class="content container">
-        <h1>Konferencecenter og skole – samme adresse.</h1>
-        <p>Fleksible konferencelokaler og et dedikeret team.</p>
+        <h1 data-i18n="hero.title">Konferencecenter og skole – samme adresse.</h1>
+        <p data-i18n="hero.subtitle">Fleksible konferencelokaler og et dedikeret team.</p>
         <div class="actions">
-          <a class="button secondary" href="#about">Om os</a>
-          <a class="button primary" href="#booking">Booking</a>
+          <a class="button secondary" href="#about" data-i18n="hero.aboutBtn">Om os</a>
+          <a class="button primary" href="#booking" data-i18n="hero.bookBtn">Booking</a>
         </div>
       </div>
     </section>
 
     <!-- ===== INDHOLD NEDENFOR ===== -->
     <section id="about" class="container">
-      <h2>Om vores faciliteter</h2>
-      <p>Adgangsforhold, parkering, offentlig transport og support på stedet.</p>
+      <h2 data-i18n="about.title">Om vores faciliteter</h2>
+      <p data-i18n="about.subtitle">Adgangsforhold, parkering, offentlig transport og support på grunden.</p>
       <div class="grid">
-        <div class="card">Ladestandere til elbil</div>
-        <div class="card">Forplejning</div>
-        <div class="card">Central beliggenhed</div>
+        <div class="card" data-i18n="about.a1">Ladestandere til elbil</div>
+        <div class="card" data-i18n="about.a2">Forplejning</div>
+        <div class="card" data-i18n="about.a3">Central beliggenhed</div>
       </div>
     </section>
 
     <section id="rooms" class="container">
-      <h2>Lokaler</h2>
+      <h2 data-i18n="rooms.title">Lokaler</h2>
+      <p data-i18n="rooms.subtitle">Lokaler for konferencer</p>
       <div class="grid">
-        <article class="card">Lokale 1 — op til 60 personer</article>
-        <article class="card">Lokale 2 — op til 24 personer</article>
-        <article class="card">Lokale 3 — op til 10 personer</article>
+        <article class="card" data-i18n="rooms.r1">Lokale 1 — op til 60 personer</article>
+        <article class="card" data-i18n="rooms.r2">Lokale 2 — op til 24 personer</article>
+        <article class="card" data-i18n="rooms.r3">Lokale 3 — op til 10 personer</article>
       </div>
     </section>
 
     <section id="skole" class="container">
-      <h2>Skolen (PGU)</h2>
-      <p>Vi er også en produktionsskole (PGU). Skolens tilbud er for tilmeldte elever og er ikke åbne som offentlige kurser.</p>
+      <h2 data-i18n="school.title">Skolen (PGU)</h2>
+      <p data-i18n="school.subtitle">Vi er også en produktionsskole (PGU). Skolens tilbud er for tilmeldte elever og er ikke åbne som offentlige kurser.</p>
       <div class="grid">
-        <article class="card">BBA</article>
-        <article class="card">IT</article>
-        <article class="card">Medie &amp; kultur</article>
+        <article class="card" data-i18n="school.s1">BBA</article>
+        <article class="card" data-i18n="school.s2">IT</article>
+        <article class="card" data-i18n="school.s3">Medie &amp; kultur</article>
       </div>
-      <p style="margin-top:1rem;"><a class="button" href="https://fgu-skolen.dk">Læs om skolen</a></p>
+      <p style="margin-top:1rem;"><a class="button" data-i18n="school.link" href="https://fgu-skolen.dk">Læs om skolen</a></p>
     </section>
 
     <section id="booking" class="container">
-      <h2>Booking / forespørgsler</h2>
-      <p>Vi kobler dette til en rigtig formular i næste trin.</p>
-      <p><a class="button primary" href="#contact">Start en forespørgsel</a></p>
+      <h2 data-i18n="booking.title">Booking / forespørgsler</h2>
+      <p data-i18n="booking.subtitle">Vi kobler dette til en rigtig formular i næste trin.</p>
+      <p><a class="button primary" data-i18n="booking.btn" href="#contact">Start en forespørgsel</a></p>
     </section>
   </main>
 
   <footer class="container" id="contact">
-    <p>© <span id="year"></span> Tune Kursuscenter · Grevevej 20 · +45 99 999 · hello@example.com</p>
+    <p data-i18n="contact.contact">© <span id="year"></span> Tune Kursuscenter · Grevevej 20 · +45 99 999 · hello@example.com</p>
   </footer>
 
   <script>

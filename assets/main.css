@@ -129,6 +129,26 @@ nav a {
   margin: 4px 0;
 }
 
+/* Right side of header (hamburger + nav + language) */
+.bar .right { display: flex; align-items: center; gap: .5rem; }
+
+/* Language switch (flag) */
+.lang-switch{
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: .5rem;
+  padding: .35rem .5rem;
+  font-size: 1.1rem;   /* slightly larger flag */
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Keep it visible on mobile (nav is hidden there) */
+@media (max-width: 800px){
+  .lang-switch { /* nothing special, stays visible next to hamburger */ }
+}
+
+
 /* == 5) HERO (VIDEO BACKGROUND) =========================================== */
 .hero {
   position: relative;
