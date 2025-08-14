@@ -47,19 +47,19 @@
       'school.subtitle': 'Vi er også en produktionsskole (PGU). Skolens tilbud er for tilmeldte elever og er ikke åbne som offentlige kurser.',
       'school.s1': 'BBA',
       'school.s2': 'IT',
-      'school.s3': 'Medie &amp; kultur',
+      'school.s3': 'Medie & kultur',
       'school.link': 'Læs om skolen',
-    // CONTINUE FROM HERE
+
       'booking.title': 'Booking / forespørgsler',
-      'booking.blurb': 'Vi kobler dette til en rigtig formular i næste trin.',
-      'booking.cta': 'Start en forespørgsel'
+      'booking.subtitle': 'Vi kobler dette til en rigtig formular i næste trin.',
+      'booking.btn': 'Start en forespørgsel'
     },
     en: {
       'nav.about': 'About',
       'nav.rooms': 'Rooms',
       'nav.school': 'The School (PGU)',
       'nav.contact': 'Contact',
-      'nav.book': 'Book',
+      'nav.book': 'Booking',
 
       'hero.title': 'Conference center and school — one campus.',
       'hero.subtitle': 'Flexible conference rooms and a dedicated team.',
@@ -67,23 +67,27 @@
       'hero.bookBtn': 'Book',
 
       'about.title': 'About our facilities',
-      'about.blurb': 'Accessibility, parking, public transport, and on-site support.',
-      'about.f1': 'EV charging',
-      'about.f2': 'Catering',
-      'about.f3': 'Central location',
+      'about.subtitle': 'Accessibility, parking, public transport, and on-site support.',
+      'about.a1': 'EV charging',
+      'about.a2': 'Catering',
+      'about.a3': 'Central location',
 
       'rooms.title': 'Rooms',
+      'rooms.subtitle': 'Conference rooms',
       'rooms.r1': 'Room 1 — up to 60 people',
       'rooms.r2': 'Room 2 — up to 24 people',
       'rooms.r3': 'Room 3 — up to 10 people',
 
       'school.title': 'The School (PGU)',
-      'school.blurb': 'We are also a production school (PGU). The school’s offerings are for enrolled students and are not public courses.',
-      'school.cta': 'Read about the school',
+      'school.subtitle': 'We are also a production school (PGU). The school’s offerings are for enrolled students and are not public courses.',
+      'school.s1': 'BBA',
+      'school.s2': 'IT',
+      'school.s3': 'Media & culture',
+      'school.link': 'About the school',
 
       'booking.title': 'Booking / enquiries',
-      'booking.blurb': 'We’ll connect this to a real form in the next step.',
-      'booking.cta': 'Start an enquiry'
+      'booking.subtitle': 'We’ll connect this to a real form in the next step.',
+      'booking.btn': 'Start an enquiry'
     }
   };
 
