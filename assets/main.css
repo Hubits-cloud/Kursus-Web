@@ -15,37 +15,43 @@
    ========================================================================== */
 
 :root {
-  /* ---- Raw palette (named for clarity) ---- */
+  /* Raw palette */
   --c-light-blue: #83bbd2;
   --c-deep-blue:  #24586c;  /* primary brand */
   --c-slate:      #8398a9;  /* muted neutral */
-  --c-salmon:     #e28876;  /* warm accent */
-  --c-sand:       #e7d2a0;  /* soft background accent */
+  --c-salmon:     #e28876;  /* warm accent (use with dark text) */
+  --c-sand:       #e7d2a0;  /* soft section bg */
 
-  /* ---- Semantic tokens (what the rest of the CSS uses) ---- */
+  /* Semantic tokens used by the site */
   --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-alt: var(--c-sand);     /* use for highlighted sections */
+  --color-surface-alt: var(--c-sand);
 
-  --color-text: #111111;                  /* main body text */
-  --color-muted: var(--c-slate);          /* secondary text */
-  --color-border: #e4e7ea;                /* light border that fits palette */
+  --color-text: #111111;
+  --color-muted: var(--c-slate);
+  --color-border: #e4e7ea;
 
   --color-primary: var(--c-deep-blue);
   --color-primary-contrast: #ffffff;
-  /* Fallback + modern hover shade */
-  --color-primary-hover: #1d4759;         /* fallback */
-  --color-primary-hover-mix: color-mix(in srgb, var(--c-deep-blue), black 15%);
+  --color-primary-hover: #1d4759; /* fallback hover */
 
   --color-accent: var(--c-salmon);
-  --color-accent-contrast: #ffffff;
-  --color-accent-hover: #cc7869;          /* fallback */
+  --color-accent-contrast: #111111; /* dark text for accessibility */
+  --color-accent-hover: color-mix(in srgb, var(--c-salmon), black 15%);
 
-  /* shape/spacing (unchanged) */
   --radius: .6rem;
   --space: 1rem;
   --max: 1100px;
+
+  /* Backward-compat: keep old tokens working */
+  --brand: var(--color-primary);
+  --ink: var(--color-text);
+  --muted: var(--color-muted);
+  --bg: var(--color-bg);
+  --border: var(--color-border);
 }
+
+/* If color-mix isn't supported, the browser uses the fallback above */
 
 /* Prefer the color-mix hover in browsers that support it */
 @supports (background: color-mix(in srgb, white, black)) {
@@ -64,23 +70,28 @@ body {
 }
 
 /* Base */
-body { margin:0; font:16px/1.5 system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-       color:var(--color-text); background:var(--color-bg); }
+body {
+  margin: 0;
+  font: 16px/1.5 system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
 
-/* Header & footer borders stay in tone */
-header, footer, section { border-bottom:1px solid var(--color-border); }
+/* Headings in brand deep-blue (optional but nice) */
+h1, h2, h3 { color: var(--c-deep-blue); }
 
-/* Nav links and muted text */
-nav a { color: var(--color-muted); text-decoration: none; margin-left:1rem; }
+/* Borders & surfaces */
+header, footer, section { border-bottom: 1px solid var(--color-border); }
+.card { border: 1px solid var(--color-border); border-radius: .6rem; padding: 1rem; background: var(--color-surface); }
 
-/* Cards and surfaces */
-.card { border:1px solid var(--color-border); border-radius:.6rem; padding:1rem; background:var(--color-surface); }
+/* Nav links */
+nav a { color: var(--color-muted); text-decoration: none; margin-left: 1rem; }
 
 /* Buttons */
 .button {
-  display:inline-block; padding:.7rem 1.1rem; border-radius:var(--radius);
-  text-decoration:none; border:1px solid transparent;
-  transition: background-color .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
+  display: inline-block; padding: .7rem 1.1rem; border-radius: var(--radius);
+  text-decoration: none; border: 1px solid transparent;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
 }
 .button.primary {
   background: var(--color-primary);
@@ -88,9 +99,16 @@ nav a { color: var(--color-muted); text-decoration: none; margin-left:1rem; }
   border-color: var(--color-primary);
 }
 .button.primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
-.button.secondary { background: transparent; color:#fff; border-color:#fff; }
 
-/* Optional accent section (use on any <section> by adding .section--alt) */
+/* Accent button (uses salmon + dark text for contrast) */
+.button.accent {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border-color: var(--color-accent);
+}
+.button.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+
+/* Optional: pale section band */
 .section--alt { background: var(--color-surface-alt); border-bottom-color: transparent; }
 
 .button.accent {
