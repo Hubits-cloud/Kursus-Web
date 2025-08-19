@@ -1,340 +1,192 @@
 /* ==========================================================================
-   Tune Kursuscenter — main.css
-   Purpose: simple, readable styles for the landing page.
+   Tune Kursuscenter — Minimal CSS
+   Purpose: neutral, readable, and unobtrusive styles that fit your
+   existing HTML (header/hero/sections/grid/buttons).
    ========================================================================== */
 
-/* == 1) THEME TOKENS ====================================================== */
-/* ==========================================================================
-   DESIGN TOKENS — Tune Kursuscenter color palette
-   Source HEX:
-   - Light blue  : #83bbd2
-   - Deep blue   : #24586c
-   - Slate       : #8398a9
-   - Salmon      : #e28876
-   - Sand        : #e7d2a0
-   ========================================================================== */
-
-:root {
-  /* Raw palette */
-  --c-light-blue: #83bbd2;
-  --c-deep-blue:  #24586c;  /* primary brand */
-  --c-slate:      #8398a9;  /* muted neutral */
-  --c-salmon:     #e28876;  /* warm accent (use with dark text) */
-  --c-sand:       #e7d2a0;  /* soft section bg */
-
-  /* Semantic tokens used by the site */
-  --color-bg: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-alt: var(--c-sand);
-
-  --color-text: #111111;
-  --color-muted: var(--c-slate);
-  --color-border: #e4e7ea;
-
-  --color-primary: var(--c-deep-blue);
-  --color-primary-contrast: #ffffff;
-  --color-primary-hover: #1d4759; /* fallback hover */
-
-  --color-accent: var(--c-salmon);
-  --color-accent-contrast: #111111; /* dark text for accessibility */
-  --color-accent-hover: color-mix(in srgb, var(--c-salmon), black 15%);
+/* == Theme (neutral grayscale) =========================================== */
+:root{
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #111111;
+  --muted: #6b7280;          /* secondary text */
+  --border: #e5e7eb;         /* subtle lines */
+  --brand: #0f172a;          /* near-black for primary accents */
+  --brand-hover: #0b1221;
 
   --radius: .6rem;
   --space: 1rem;
   --max: 1100px;
-
-  /* Backward-compat: keep old tokens working */
-  --brand: var(--color-primary);
-  --ink: var(--color-text);
-  --muted: var(--color-muted);
-  --bg: var(--color-bg);
-  --border: var(--color-border);
 }
 
-/* If color-mix isn't supported, the browser uses the fallback above */
-
-/* Prefer the color-mix hover in browsers that support it */
-@supports (background: color-mix(in srgb, white, black)) {
-  :root { --color-primary-hover: var(--color-primary-hover-mix); }
-}
-
-
-/* == 2) BASE / RESET ======================================================= */
+/* == Base ================================================================ */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
-body {
+body{
   margin: 0;
-  font: 16px/1.5 system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
 }
 
-/* Base */
-body {
-  margin: 0;
-  font: 16px/1.5 system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color: var(--color-text);
-  background: var(--color-bg);
-}
+/* Links: understated, no purple visited */
+a { color: var(--brand); text-decoration: none; }
+a:hover { color: var(--brand-hover); }
+a:visited { color: var(--brand); }
+a:focus-visible { outline: 2px solid #94a3b8; outline-offset: 2px; }
 
-/* Headings in brand deep-blue (optional but nice) */
-h1, h2, h3 { color: var(--c-deep-blue); }
-
-/* Borders & surfaces */
-header, footer, section { border-bottom: 1px solid var(--color-border); }
-.card { border: 1px solid var(--color-border); border-radius: .6rem; padding: 1rem; background: var(--color-surface); }
-
-/* Nav links */
-nav a { color: var(--color-muted); text-decoration: none; margin-left: 1rem; }
-
-/* Buttons */
-.button {
-  display: inline-block; padding: .7rem 1.1rem; border-radius: var(--radius);
-  text-decoration: none; border: 1px solid transparent;
-  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
-}
-.button.primary {
-  background: var(--color-primary);
-  color: var(--color-primary-contrast);
-  border-color: var(--color-primary);
-}
-.button.primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
-
-/* Accent button (uses salmon + dark text for contrast) */
-.button.accent {
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
-  border-color: var(--color-accent);
-}
-.button.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
-
-/* Optional: pale section band */
-.section--alt { background: var(--color-surface-alt); border-bottom-color: transparent; }
-
-.button.accent {
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
-  border-color: var(--color-accent);
-}
-.button.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
-
-
-
-/* Visually-hidden skip link that appears on keyboard focus */
-.skip {
+/* Skip link for keyboard users */
+.skip{
   position: absolute; left: -9999px; top: auto;
 }
-.skip:focus {
+.skip:focus{
   left: var(--space); top: var(--space);
-  background: #fff; color: var(--ink);
-  padding: .5rem 1rem; border: 1px solid var(--border);
-  border-radius: .3rem;
+  background: var(--surface); color: var(--ink);
+  padding: .5rem 1rem; border: 1px solid var(--border); border-radius: .3rem;
 }
 
-/* == 3) LAYOUT HELPERS ===================================================== */
-.container {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--space);
+/* == Layout helpers ====================================================== */
+.container{ max-width: var(--max); margin: 0 auto; padding: 0 var(--space); }
+
+/* == Header / Nav ======================================================== */
+header{
+  position: sticky; top: 0; z-index: 20;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: saturate(120%) blur(6px);
+}
+.bar{
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand{
+  display: inline-flex; align-items: center; gap: .6rem;
+  color: var(--ink); font-weight: 700; text-decoration: none;
+}
+.brand .logo{
+  width: 40px; height: 40px; border-radius: .5rem;
+  border: 1px solid var(--border); background: #fff; display: inline-block;
 }
 
-/* Reusable button styles */
-.button {
+/* Desktop nav */
+nav a{ color: var(--muted); margin-left: 1rem; }
+
+/* Right side cluster (hamburger + nav + lang) */
+.bar .right{ display: flex; align-items: center; gap: .5rem; }
+
+/* Language button */
+.lang-switch{
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: .5rem;
+  padding: .35rem .5rem;
+  font-size: 1rem; line-height: 1;
+  cursor: pointer;
+}
+
+/* Hamburger (mobile only) */
+.hamburger{
+  display: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: .5rem;
+  padding: .5rem; cursor: pointer;
+}
+.hamburger span{ display:block; width:22px; height:2px; background: var(--ink); margin:4px 0; }
+
+/* == Hero (video background) ============================================ */
+.hero{
+  position: relative; min-height: 70vh;
+  display: grid; place-items: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero-media{
+  position: absolute; inset: 0; overflow: hidden;
+  border-radius: 1rem; margin: var(--space);
+}
+.hero-media video,
+.hero-media img{
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+/* soft overlay so text always readable */
+.hero-media::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.08));
+}
+.hero .content{
+  position: relative; z-index: 1; text-align: center; color: #fff;
+  padding: 2rem;
+}
+.hero h1{ margin: 0 0 .6rem; font-size: clamp(1.8rem, 2.4vw + 1rem, 3rem); }
+.hero p{ margin: 0 0 1rem; color: rgba(255,255,255,.85); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){ .hero-media video{ display:none; } }
+
+/* == Buttons ============================================================= */
+.button{
   display: inline-block;
   padding: .7rem 1.1rem;
   border-radius: var(--radius);
-  text-decoration: none;
   border: 1px solid transparent;
+  text-decoration: none;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform .05s ease;
 }
-.button.primary {
+.button:active{ transform: translateY(1px); }
+
+.button.primary{
   background: var(--brand);
   color: #fff;
   border-color: var(--brand);
 }
-.button.secondary {
-  background: transparent;
-  color: #fff;
-  border-color: #fff;
-}
+.button.primary:hover{ background: var(--brand-hover); border-color: var(--brand-hover); }
 
-/* Simple cards and grids for the lower sections */
-.grid {
-  display: grid;
-  gap: 1rem;
+.button.secondary{
+  background: transparent;
+  color: #fff;                    /* intended for hero on dark overlay */
+  border-color: rgba(255,255,255,.7);
+}
+.button.secondary:hover{ border-color: #fff; }
+
+/* If you ever use .button.accent, make it same as primary in minimalist mode */
+.button.accent{ background: var(--brand); color:#fff; border-color: var(--brand); }
+.button.accent:hover{ background: var(--brand-hover); border-color: var(--brand-hover); }
+
+/* == Sections / Cards / Grids =========================================== */
+section{ padding: 3rem 0; border-bottom: 1px solid var(--border); }
+h2{ margin: 0 0 .8rem; color: var(--ink); }
+
+.grid{
+  display: grid; gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
-.card {
+.card{
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: .6rem;
   padding: 1rem;
 }
 
-/* == 4) HEADER / NAV ======================================================= */
-header {
-  position: sticky; /* stays visible when scrolling */
-  top: 0;
-  z-index: 20;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-}
-.bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-}
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: .6rem;
-  text-decoration: none;
-  color: var(--ink);
-  font-weight: 700;
-}
-.brand .logo {
-  /* Placeholder “logo” box — replace with an <img> later */
-  width: 40px; height: 40px;
-  border-radius: .5rem;
-  border: 1px solid var(--border);
-  display: inline-block;
-}
+/* (Optional) muted chips—kept neutral */
+.chips{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.8rem 0 0; }
+.chip{ background:#f3f4f6; color:#374151; padding:.35rem .6rem; border-radius:999px; font-size:.9rem; }
 
-/* Desktop nav */
-nav a {
-  color: var(--muted);
-  text-decoration: none;
-  margin-left: 1rem;
-}
+/* Footer */
+footer{ padding: 2rem 0; color: var(--muted); }
 
-/* Mobile hamburger button (hidden on desktop) */
-.hamburger {
-  display: none;
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: .5rem;
-  padding: .5rem;
-}
-.hamburger span {
-  display: block;
-  width: 22px; height: 2px;
-  background: var(--ink);
-  margin: 4px 0;
-}
-
-/* Right side of header (hamburger + nav + language) */
-.bar .right { display: flex; align-items: center; gap: .5rem; }
-
-/* Language switch (flag) */
-.lang-switch{
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: .5rem;
-  padding: .35rem .5rem;
-  font-size: 1.1rem;   /* slightly larger flag */
-  line-height: 1;
-  cursor: pointer;
-}
-
-/* Keep it visible on mobile (nav is hidden there) */
+/* == Responsive nav ====================================================== */
 @media (max-width: 800px){
-  .lang-switch { /* nothing special, stays visible next to hamburger */ }
-}
-
-
-/* == 5) HERO (VIDEO BACKGROUND) =========================================== */
-.hero {
-  position: relative;
-  min-height: 70vh;
-  display: grid;
-  place-items: center;
-  border-bottom: 1px solid var(--border);
-}
-
-/* Media container sits behind the text */
-.hero-media {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 1rem;
-  margin: var(--space); /* rounded corners inset from page edge */
-}
-.hero-media video,
-.hero-media img {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; /* crop to fill nicely */
-}
-
-/* Dark gradient overlay for text readability */
-.hero-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.15));
-}
-
-/* Foreground content */
-.hero .content {
-  position: relative;
-  z-index: 1;      /* above the video */
-  text-align: center;
-  color: #fff;
-  padding: 2rem;
-}
-.hero h1 {
-  font-size: clamp(1.8rem, 2.4vw + 1rem, 3rem);
-  margin: 0 0 .6rem;
-}
-.hero p {
-  margin: 0 0 1rem;
-  color: #e6e9ef;
-}
-.actions {
-  display: flex;
-  gap: .8rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Respect users who prefer reduced motion: hide video, show poster image */
-@media (prefers-reduced-motion: reduce) {
-  .hero-media video { display: none; }
-}
-
-/* == 6) CONTENT SECTIONS & FOOTER ========================================= */
-section {
-  padding: 3rem 0;
-  border-bottom: 1px solid var(--border);
-}
-h2 { margin: 0 0 .8rem; }
-
-footer {
-  padding: 2rem 0;
-  color: var(--muted);
-}
-
-/* == 7) RESPONSIVE BEHAVIOUR ============================================== */
-/* Under 800px: hide desktop nav; show a simple dropdown menu */
-@media (max-width: 800px) {
-  nav { display: none; }
-
-  /* When JS toggles data-open="true", reveal the menu as a small panel */
-  nav[data-open="true"] {
+  nav{ display: none; }
+  nav[data-open="true"]{
     display: block;
     position: absolute;
-    top: 64px;        /* below the header */
-    right: var(--space);
-    background: #fff;
+    top: 64px; right: var(--space);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: .5rem;
     padding: .6rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
   }
-  nav[data-open="true"] a {
-    display: block;
-    padding: .4rem .6rem;
-    margin: .1rem 0;
-  }
-
-  .hamburger { display: inline-block; }
+  nav[data-open="true"] a{ display:block; padding:.45rem .6rem; margin:.1rem 0; }
+  .hamburger{ display: inline-block; }
 }
