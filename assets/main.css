@@ -140,6 +140,8 @@ nav a{ color: var(--muted); margin-left: 1rem; }
   border-color: var(--brand);
 }
 .button.primary:hover{ background: var(--brand-hover); border-color: var(--brand-hover); }
+/* Primary CTA weight for clearer Z-pattern */
+.button.primary { font-weight:600; }
 
 .button.secondary{
   background: transparent;
@@ -173,6 +175,15 @@ h2{ margin: 0 0 .8rem; color: var(--ink); }
 
 /* Footer */
 footer{ padding: 2rem 0; color: var(--muted); }
+
+/* Social links in footer */
+.social { display:flex; gap:.8rem; margin-top:.5rem; }
+.social a { color: var(--muted); }
+.social a:hover { color: var(--ink); }
+
+/* Full-bleed alt section while keeping inner container width */
+section.section--alt { background:#f6f7f9; border-bottom-color: transparent; }
+section.section--alt > .container { padding-top:3rem; padding-bottom:3rem; }
 
 /* == Responsive nav ====================================================== */
 @media (max-width: 800px){
