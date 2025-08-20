@@ -3,7 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tune Kursuscenter</title>
+  <title>Tune Kursuscenter – Konferencecenter drevet af skole</title>
+  <meta name="description" content="Fleksible konferencelokaler, drevet af en skole. Moderne AV, central beliggenhed og dedikeret support. Book lokaler eller kontakt os i dag.">
+  <link rel="canonical" href="https://example.com/">
+
+  <!-- Language alternates (adjust if you add /en/) -->
+  <link rel="alternate" href="https://example.com/" hreflang="da">
+  <link rel="alternate" href="https://example.com/en/" hreflang="en">
+  <link rel="alternate" href="https://example.com/" hreflang="x-default">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tune Kursuscenter">
+  <meta property="og:description" content="Konferencecenter drevet af skole. Fleksible lokaler og moderne AV.">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://example.com/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Organization schema (fill real values) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Tune Kursuscenter",
+    "url": "https://example.com/",
+    "telephone": "+45 00 00 00 00",
+    "address": { "@type": "PostalAddress", "streetAddress": "Grevevej 20", "postalCode": "2670", "addressLocality": "Greve", "addressCountry": "DK" },
+    "sameAs": [
+      "https://www.facebook.com/yourpage",
+      "https://www.linkedin.com/company/yourpage",
+      "https://www.instagram.com/yourpage"
+    ]
+  }
+  </script>
 
   <!-- Forlæs plakatbilledet så helten ikke blinker før videoen loader -->
   <link rel="preload" as="image" href="assets/estate-poster.jpg" />
@@ -50,12 +82,11 @@
     <!-- ===== HERO MED VIDEO ===== -->
     <section class="hero">
       <div class="hero-media" aria-hidden="true">
-        <video autoplay muted loop playsinline poster="assets/estate-poster.jpg">
-          <source src="assets/estate.webm" type="video/webm" />
-          <source src="assets/estate.mp4" type="video/mp4" />
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/estate-poster.jpg">
+          <source src="assets/estate.webm" type="video/webm">
+          <source src="assets/estate.mp4" type="video/mp4">
         </video>
-        <!-- Faldt tilbage hvis video ikke kan afspilles / reduceret bevægelse -->
-        <img src="assets/estate-poster.jpg" alt="" />
+        <noscript><img src="assets/estate-poster.jpg" alt=""></noscript>
       </div>
 
       <div class="content container">
@@ -110,7 +141,16 @@
   </main>
 
   <footer class="container" id="contact">
-    <p data-i18n="contact.contact">© <span id="year"></span> Tune Kursuscenter · Grevevej 20 · +45 99 999 · hello@example.com</p>
+    <p>
+      © <span id="year"></span> Tune Kursuscenter · Grevevej 20 ·
+      <a href="tel:+4500000000">+45 00 00 00 00</a> ·
+      <a href="mailto:hello@example.com">hello@example.com</a>
+    </p>
+    <nav aria-label="Sociale medier" class="social">
+      <a href="https://www.facebook.com/yourpage" rel="me noopener" target="_blank">Facebook</a>
+      <a href="https://www.linkedin.com/company/yourpage" rel="me noopener" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/yourpage" rel="me noopener" target="_blank">Instagram</a>
+    </nav>
   </footer>
 
   <script>
